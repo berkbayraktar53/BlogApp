@@ -10,5 +10,6 @@ namespace BlogApp.Business.Abstract
     public interface IArticleService
     {
         List<Article>? GetArticleListWithCategory();
+        List<Article>? GetById(int id);
     }
 }

@@ -1,4 +1,29 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using BlogApp.Business.Abstract;
+using BlogApp.Business.Concrete;
+using BlogApp.DataAccess.Abstract;
+using BlogApp.DataAccess.Concrete.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterType<AboutManager>().As<IAboutService>().SingleInstance();
+    builder.RegisterType<ArticleManager>().As<IArticleService>().SingleInstance();
+    builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+    builder.RegisterType<CommentManager>().As<ICommentService>().SingleInstance();
+    builder.RegisterType<ContactManager>().As<IContactService>().SingleInstance();
+    builder.RegisterType<WriterManager>().As<IWriterService>().SingleInstance();
+
+    builder.RegisterType<EfAboutDal>().As<IAboutDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfArticleDal>().As<IArticleDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfCommentDal>().As<ICommentDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfContactDal>().As<IContactDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfWriterDal>().As<IWriterDal>().InstancePerLifetimeScope();
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,6 +47,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Blog}/{action=Index}/{id?}");
 
 app.Run();

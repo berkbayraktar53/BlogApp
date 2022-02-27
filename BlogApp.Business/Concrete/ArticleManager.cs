@@ -22,5 +22,10 @@ namespace BlogApp.Business.Concrete
         {
             return _articleDal.GetArticleListWithCategory();
         }
+
+        public List<Article>? GetById(int id)
+        {
+            return _articleDal.GetAll(x => x.ArticleId == id);
+        }
     }
 }
