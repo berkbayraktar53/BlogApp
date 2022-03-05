@@ -9,6 +9,6 @@ namespace BlogApp.Business.Abstract
 {
     public interface ICommentService
     {
-        List<Comment> GetAll();
+        List<Comment> GetAll(int id);
     }
 }

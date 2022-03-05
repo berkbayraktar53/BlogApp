@@ -44,9 +44,8 @@
                         <a href="single.html" class="btn btn-primary read-m">Blog Listesi</a>
                     </div>
                 }
-                @*@await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.id })*@
-                @*@await Html.PartialAsync("~/Views/Comment/CommentListByBlog.cshtml")*@
-                @*@await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")*@
+                @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.id })
+                @await Html.PartialAsync("~/Views/Comment/AddComment.cshtml")
             </div>
             <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
                 <div class="right-blog-info text-left">
@@ -54,7 +53,7 @@
                         <img src="~/BlogTheme/images/banner1.jpg" class="img-fluid" alt="">
                     </div>
                     @*@await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.csHtml")*@
-                    @*@await Component.InvokeAsync("CategoryList")*@
+                    @await Component.InvokeAsync("CategoryList")
                     @*@await Component.InvokeAsync("WriterLastBlog")*@
                     <div class="single-gd my-5 tech-btm">
                         <h4>Our Progress</h4>

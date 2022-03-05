@@ -18,9 +18,9 @@ namespace BlogApp.Business.Concrete
             _commentDal = commentDal;
         }
 
-        public List<Comment> GetAll()
+        public List<Comment> GetAll(int id)
         {
-            return _commentDal.GetAll();
+            return _commentDal.GetAll(x => x.ArticleId == id);
         }
     }
 }
