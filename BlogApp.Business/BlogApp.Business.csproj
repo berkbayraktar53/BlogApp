@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.6" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlogApp.DataAccess\BlogApp.DataAccess.csproj" />
     <ProjectReference Include="..\BlogApp.Entities\BlogApp.Entities.csproj" />
   </ItemGroup>

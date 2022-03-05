@@ -10,5 +10,6 @@ namespace BlogApp.Business.Abstract
     public interface IWriterService
     {
         List<Writer> GetAll();
+        void Create(Writer writer);
     }
 }

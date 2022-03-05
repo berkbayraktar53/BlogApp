@@ -18,6 +18,11 @@ namespace BlogApp.Business.Concrete
             _writerDal = writerDal;
         }
 
+        public void Create(Writer writer)
+        {
+            _writerDal.Create(writer);
+        }
+
         public List<Writer> GetAll()
         {
             return _writerDal.GetAll();
