@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BlogApp.Business.Abstract;
@@ -29,6 +30,12 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddNotyf(cfg =>
+{
+    cfg.DurationInSeconds = 3;
+    cfg.IsDismissable = true;
+    cfg.Position = NotyfPosition.BottomRight;
+});
 
 var app = builder.Build();
 

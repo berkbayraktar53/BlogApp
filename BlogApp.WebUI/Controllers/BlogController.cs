@@ -1,4 +1,5 @@
-﻿using BlogApp.Business.Abstract;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using BlogApp.Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebUI.Controllers
@@ -6,14 +7,17 @@ namespace BlogApp.WebUI.Controllers
     public class BlogController : Controller
     {
         private readonly IArticleService _articleService;
+        private readonly INotyfService _notyfService;
 
-        public BlogController(IArticleService articleService)
+        public BlogController(IArticleService articleService, INotyfService notyfService)
         {
             _articleService = articleService;
+            _notyfService = notyfService;
         }
 
         public IActionResult Index()
         {
+            _notyfService.Success("Hoşgeldiniz");
             var values = _articleService.GetArticleListWithCategory();
             return View(values);
         }

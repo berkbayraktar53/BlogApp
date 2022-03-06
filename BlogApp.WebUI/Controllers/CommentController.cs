@@ -1,4 +1,5 @@
-﻿using BlogApp.Business.Abstract;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using BlogApp.Business.Abstract;
 using BlogApp.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,12 @@ namespace BlogApp.WebUI.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
+        private readonly INotyfService _notyfService;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, INotyfService notyfService)
         {
             _commentService = commentService;
+            _notyfService = notyfService;
         }
 
         public PartialViewResult CommentListByBlog(int id)
@@ -20,19 +23,20 @@ namespace BlogApp.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult AddComment()
+        public IActionResult AddComment()
         {
-            return PartialView();
+            return View();
         }
 
         [HttpPost]
-        public PartialViewResult AddComment(Comment comment)
+        public IActionResult AddComment(Comment comment)
         {
             comment.Status = true;
             comment.Date = DateTime.Now;
             comment.ArticleId = 1;
             _commentService.Create(comment);
-            return PartialView();
+            _notyfService.Success("Yorumunuz eklendi");
+            return RedirectToAction("Detail", "Blog");
         }
     }
 }
