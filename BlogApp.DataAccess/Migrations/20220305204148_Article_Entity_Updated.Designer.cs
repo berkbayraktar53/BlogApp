@@ -4,6 +4,7 @@ using BlogApp.DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.DataAccess.Migrations
 {
     [DbContext(typeof(BlogAppContext))]
-    partial class BlogAppContextModelSnapshot : ModelSnapshot
+    [Migration("20220305204148_Article_Entity_Updated")]
+    partial class Article_Entity_Updated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,25 +183,6 @@ namespace BlogApp.DataAccess.Migrations
                     b.HasKey("ContactId");
 
                     b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("BlogApp.Entities.Concrete.Subscribe", b =>
-                {
-                    b.Property<int>("SubscribeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubscribeId"), 1L, 1);
-
-                    b.Property<string>("Mail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("SubscribeId");
-
-                    b.ToTable("Subscribes");
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Concrete.Writer", b =>

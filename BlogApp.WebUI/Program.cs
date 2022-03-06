@@ -15,6 +15,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
     builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
     builder.RegisterType<CommentManager>().As<ICommentService>().SingleInstance();
     builder.RegisterType<ContactManager>().As<IContactService>().SingleInstance();
+    builder.RegisterType<SubscribeManager>().As<ISubscribeService>().SingleInstance();
     builder.RegisterType<WriterManager>().As<IWriterService>().SingleInstance();
 
     builder.RegisterType<EfAboutDal>().As<IAboutDal>().InstancePerLifetimeScope();
@@ -22,6 +23,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
     builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().InstancePerLifetimeScope();
     builder.RegisterType<EfCommentDal>().As<ICommentDal>().InstancePerLifetimeScope();
     builder.RegisterType<EfContactDal>().As<IContactDal>().InstancePerLifetimeScope();
+    builder.RegisterType<EfSubscribeDal>().As<ISubscribeDal>().InstancePerLifetimeScope();
     builder.RegisterType<EfWriterDal>().As<IWriterDal>().InstancePerLifetimeScope();
 });
 

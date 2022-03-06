@@ -10,5 +10,6 @@ namespace BlogApp.Business.Abstract
     public interface ICommentService
     {
         List<Comment> GetAll(int id);
+        void Create(Comment comment);
     }
 }

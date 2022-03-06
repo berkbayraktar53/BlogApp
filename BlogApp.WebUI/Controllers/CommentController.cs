@@ -1,4 +1,5 @@
 ﻿using BlogApp.Business.Abstract;
+using BlogApp.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebUI.Controllers
@@ -18,8 +19,19 @@ namespace BlogApp.WebUI.Controllers
             return PartialView(values);
         }
 
+        [HttpGet]
         public PartialViewResult AddComment()
         {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public PartialViewResult AddComment(Comment comment)
+        {
+            comment.Status = true;
+            comment.Date = DateTime.Now;
+            comment.ArticleId = 1;
+            _commentService.Create(comment);
             return PartialView();
         }
     }

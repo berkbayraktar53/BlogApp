@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace BlogApp.Business.Abstract
 {
-    public interface IArticleService
+    public interface ISubscribeService
     {
-        List<Article>? GetArticleListWithCategory();
-        List<Article>? GetBlogListByWriter(int id);
-        List<Article>? GetById(int id);
+        List<Subscribe> GetAll();
+        void Create(Subscribe subscribe);
     }
 }

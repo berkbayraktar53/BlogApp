@@ -20,5 +20,6 @@ namespace BlogApp.Entities.Concrete
         public string? Password { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
+        public List<Article>? Articles { get; set; }
     }
 }

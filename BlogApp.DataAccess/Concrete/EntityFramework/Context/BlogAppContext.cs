@@ -20,6 +20,7 @@ namespace BlogApp.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Category>? Categories { get; set; }
         public DbSet<Comment>? Comments { get; set; }
         public DbSet<Contact>? Contacts { get; set; }
+        public DbSet<Subscribe>? Subscribes { get; set; }
         public DbSet<Writer>? Writers { get; set; }
     }
 }

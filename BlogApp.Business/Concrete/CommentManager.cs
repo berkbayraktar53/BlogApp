@@ -18,6 +18,11 @@ namespace BlogApp.Business.Concrete
             _commentDal = commentDal;
         }
 
+        public void Create(Comment comment)
+        {
+            _commentDal.Create(comment);
+        }
+
         public List<Comment> GetAll(int id)
         {
             return _commentDal.GetAll(x => x.ArticleId == id);
