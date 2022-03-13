@@ -12,5 +12,6 @@ namespace BlogApp.Business.Abstract
         List<Article>? GetArticleListWithCategory();
         List<Article>? GetBlogListByWriter(int id);
         List<Article>? GetById(int id);
+        List<Article>? GetLast3Article();
     }
 }

@@ -32,5 +32,10 @@ namespace BlogApp.Business.Concrete
         {
             return _articleDal.GetAll(x => x.ArticleId == id);
         }
+
+        public List<Article>? GetLast3Article()
+        {
+            return _articleDal.GetAll().TakeLast(3).OrderByDescending(x => x.ArticleId).ToList();
+        }
     }
 }
