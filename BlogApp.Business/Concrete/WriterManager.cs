@@ -27,5 +27,10 @@ namespace BlogApp.Business.Concrete
         {
             return _writerDal.GetAll();
         }
+
+        public Writer? GetByWriter(string email, string password)
+        {
+            return _writerDal.GetOne(x => x.Email == email && x.Password == password);
+        }
     }
 }

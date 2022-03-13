@@ -11,5 +11,6 @@ namespace BlogApp.Business.Abstract
     {
         List<Writer> GetAll();
         void Create(Writer writer);
+        Writer? GetByWriter(string email, string password);
     }
 }

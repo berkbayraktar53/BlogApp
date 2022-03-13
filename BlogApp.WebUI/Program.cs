@@ -5,6 +5,9 @@ using BlogApp.Business.Abstract;
 using BlogApp.Business.Concrete;
 using BlogApp.DataAccess.Abstract;
 using BlogApp.DataAccess.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -36,6 +39,20 @@ builder.Services.AddNotyf(cfg =>
     cfg.IsDismissable = true;
     cfg.Position = NotyfPosition.BottomRight;
 });
+builder.Services.AddMvc(config =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(x =>
+    {
+        x.LoginPath = "/Account/Login";
+    });
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -55,6 +72,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
