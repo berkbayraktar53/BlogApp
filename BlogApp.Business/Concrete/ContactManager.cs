@@ -18,6 +18,11 @@ namespace BlogApp.Business.Concrete
             _contactDal = contactDal;
         }
 
+        public void Create(Contact contact)
+        {
+            _contactDal.Create(contact);
+        }
+
         public List<Contact> GetAll()
         {
             return _contactDal.GetAll();

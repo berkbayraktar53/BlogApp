@@ -10,5 +10,6 @@ namespace BlogApp.Business.Abstract
     public interface IContactService
     {
         List<Contact> GetAll();
+        void Create(Contact contact);
     }
 }
