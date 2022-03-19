@@ -8,5 +8,10 @@ namespace BlogApp.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace BlogApp.WebUI.Controllers
                 ClaimsPrincipal principal = new(userIdentity);
                 await HttpContext.SignInAsync(principal);
                 _notyfService.Success("Giriş yapıldı");
-                return RedirectToAction("Index", "Writer");
+                return RedirectToAction("Dashboard", "Writer");
             }
             else
             {

@@ -105,7 +105,7 @@ namespace BlogApp.WebUI.Controllers
                 article.Status = true;
                 _articleService.Update(article);
                 _notyfService.Success("Blog güncellendi");
-                return RedirectToAction("BlogListByWriter");
+                return RedirectToAction("BlogListByWriter", "Blog");
             }
             _notyfService.Error("Blog güncellenemedi");
             return RedirectToAction("EditBlog", "Blog");
