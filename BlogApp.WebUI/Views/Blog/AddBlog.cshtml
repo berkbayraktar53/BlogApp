@@ -1,0 +1,31 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "AddBlog";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Yeni Blog Girişi</h1>
+<br />
+@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+{
+    @Html.Label("Blog Başlığı")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Title)
+    <br />
+    @Html.Label("Blog Görseli")
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image)
+    <br />
+    @Html.Label("Blog Küçük Görsel")
+    @Html.TextBoxFor(x => x.Thumbnail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Thumbnail)
+    <br />
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.category, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog İçeriği")
+    @Html.TextAreaFor(x => x.Content, 15, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Content)
+    <br />
+    <button class="btn btn-info" type="submit">Yazıyı Kaydet</button>
+}

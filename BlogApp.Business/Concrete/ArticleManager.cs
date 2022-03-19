@@ -28,6 +28,11 @@ namespace BlogApp.Business.Concrete
             return _articleDal.GetAll(x => x.WriterId == id);
         }
 
+        public List<Article>? GetArticleListWithCategoryByWriter(int id)
+        {
+            return _articleDal.GetArticleListWithCategoryByWriter(id);
+        }
+
         public List<Article>? GetById(int id)
         {
             return _articleDal.GetAll(x => x.ArticleId == id);
@@ -36,6 +41,26 @@ namespace BlogApp.Business.Concrete
         public List<Article>? GetLast3Article()
         {
             return _articleDal.GetAll().TakeLast(3).OrderByDescending(x => x.ArticleId).ToList();
+        }
+
+        public void Create(Article article)
+        {
+            _articleDal.Create(article);
+        }
+
+        public void Delete(Article article)
+        {
+            _articleDal.Delete(article);
+        }
+
+        public Article GetByArticleId(int id)
+        {
+            return _articleDal.GetById(id);
+        }
+
+        public void Update(Article article)
+        {
+            _articleDal.Update(article);
         }
     }
 }

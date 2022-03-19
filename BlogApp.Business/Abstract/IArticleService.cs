@@ -13,5 +13,10 @@ namespace BlogApp.Business.Abstract
         List<Article>? GetBlogListByWriter(int id);
         List<Article>? GetById(int id);
         List<Article>? GetLast3Article();
+        List<Article>? GetArticleListWithCategoryByWriter(int id);
+        Article GetByArticleId(int id);
+        void Create(Article article);
+        void Delete(Article article);
+        void Update(Article article);
     }
 }

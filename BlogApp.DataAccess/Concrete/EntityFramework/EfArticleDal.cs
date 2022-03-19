@@ -18,5 +18,11 @@ namespace BlogApp.DataAccess.Concrete.EntityFramework
             using var context = new BlogAppContext();
             return context.Articles?.Include(x => x.Category).ToList();
         }
+
+        public List<Article>? GetArticleListWithCategoryByWriter(int id)
+        {
+            using var context = new BlogAppContext();
+            return context.Articles?.Include(x => x.Category).Where(x => x.WriterId == id).ToList();
+        }
     }
 }

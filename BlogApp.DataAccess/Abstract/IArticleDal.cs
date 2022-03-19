@@ -11,5 +11,6 @@ namespace BlogApp.DataAccess.Abstract
     public interface IArticleDal : IEntityRepository<Article>
     {
         List<Article>? GetArticleListWithCategory();
+        List<Article>? GetArticleListWithCategoryByWriter(int id);
     }
 }
