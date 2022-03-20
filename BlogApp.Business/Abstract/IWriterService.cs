@@ -10,6 +10,7 @@ namespace BlogApp.Business.Abstract
     public interface IWriterService
     {
         List<Writer> GetAll();
+        List<Writer>? GetWriterById(int id);
         void Create(Writer writer);
         Writer? GetByWriter(string email, string password);
     }

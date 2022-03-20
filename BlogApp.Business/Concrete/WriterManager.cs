@@ -32,5 +32,10 @@ namespace BlogApp.Business.Concrete
         {
             return _writerDal.GetOne(x => x.Email == email && x.Password == password);
         }
+
+        public List<Writer>? GetWriterById(int id)
+        {
+            return _writerDal.GetAll(x => x.WriterId == id);
+        }
     }
 }
