@@ -12,6 +12,8 @@ namespace BlogApp.Business.Abstract
         List<Writer> GetAll();
         List<Writer>? GetWriterById(int id);
         void Create(Writer writer);
+        void Update(Writer writer);
         Writer? GetByWriter(string email, string password);
+        Writer? GetById(int id);
     }
 }
