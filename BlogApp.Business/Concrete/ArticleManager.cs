@@ -53,7 +53,7 @@ namespace BlogApp.Business.Concrete
             _articleDal.Delete(article);
         }
 
-        public Article GetByArticleId(int id)
+        public Article? GetByArticleId(int id)
         {
             return _articleDal.GetById(id);
         }
@@ -61,6 +61,11 @@ namespace BlogApp.Business.Concrete
         public void Update(Article article)
         {
             _articleDal.Update(article);
+        }
+
+        public List<Article> GetAll()
+        {
+            return _articleDal.GetAll();
         }
     }
 }
