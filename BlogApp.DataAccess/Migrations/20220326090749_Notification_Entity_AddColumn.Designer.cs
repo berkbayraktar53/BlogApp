@@ -4,6 +4,7 @@ using BlogApp.DataAccess.Concrete.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.DataAccess.Migrations
 {
     [DbContext(typeof(BlogAppContext))]
-    partial class BlogAppContextModelSnapshot : ModelSnapshot
+    [Migration("20220326090749_Notification_Entity_AddColumn")]
+    partial class Notification_Entity_AddColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
