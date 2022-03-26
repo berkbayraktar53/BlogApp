@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Works\" />
+    <Folder Include="wwwroot\WriterImageFiles\" />
   </ItemGroup>
 
 </Project>

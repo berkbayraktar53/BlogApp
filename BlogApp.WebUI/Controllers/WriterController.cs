@@ -2,6 +2,7 @@
 using BlogApp.Business.Abstract;
 using BlogApp.Business.ValidationRules.FluentValidation;
 using BlogApp.Entities.Concrete;
+using BlogApp.WebUI.Models;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,6 +64,35 @@ namespace BlogApp.WebUI.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddWriter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddWriter(AddProfileImage addProfileImage, Writer writer)
+        {
+            if (addProfileImage.Image != null)
+            {
+                var extension = Path.GetExtension(addProfileImage.Image.FileName);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newImageName);
+                var stream = new FileStream(location, FileMode.Create);
+                addProfileImage.Image.CopyTo(stream);
+                writer.Image = newImageName;
+            }
+            writer.Email = addProfileImage.Email;
+            writer.FirstName = addProfileImage.FirstName;
+            writer.LastName = addProfileImage.LastName;
+            writer.Password = addProfileImage.Password;
+            writer.About = addProfileImage.About;
+            writer.Date = DateTime.Now;
+            writer.Status = true;
+            _writerService.Create(writer);
+            return RedirectToAction("Dashboard", "Writer");
         }
     }
 }
