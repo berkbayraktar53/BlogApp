@@ -15,12 +15,14 @@ namespace BlogApp.WebUI.Controllers
         private readonly IArticleService _articleService;
         private readonly ICategoryService _categoryService;
         private readonly INotyfService _notyfService;
+        private readonly IWriterService _writerService;
 
-        public BlogController(IArticleService articleService, ICategoryService categoryService, INotyfService notyfService)
+        public BlogController(IArticleService articleService, ICategoryService categoryService, INotyfService notyfService, IWriterService writerService)
         {
             _articleService = articleService;
             _categoryService = categoryService;
             _notyfService = notyfService;
+            _writerService = writerService;
         }
 
         public IActionResult Index()
@@ -38,7 +40,9 @@ namespace BlogApp.WebUI.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var values = _articleService.GetArticleListWithCategoryByWriter(1);
+            var userMail = User.Identity?.Name;
+            var writerId = _writerService.GetAll().Where(x => x.Email == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var values = _articleService.GetArticleListWithCategoryByWriter(writerId);
             return View(values);
         }
 
@@ -58,13 +62,15 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult AddBlog(Article article)
         {
+            var userMail = User.Identity?.Name;
+            var writerId = _writerService.GetAll().Where(x => x.Email == userMail).Select(y => y.WriterId).FirstOrDefault();
             ArticleValidator rules = new();
             ValidationResult result = rules.Validate(article);
             if (result.IsValid)
             {
                 article.Status = true;
                 article.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
-                article.WriterId = 1;
+                article.WriterId = writerId;
                 _articleService.Create(article);
                 _notyfService.Success("Blog eklendi");
                 return RedirectToAction("BlogListByWriter", "Blog");
@@ -97,10 +103,12 @@ namespace BlogApp.WebUI.Controllers
         [HttpPost]
         public IActionResult EditBlog(Article article)
         {
+            var userMail = User.Identity?.Name;
+            var writerId = _writerService.GetAll().Where(x => x.Email == userMail).Select(y => y.WriterId).FirstOrDefault();
             var values = _articleService.GetByArticleId(article.ArticleId);
             if (values != null)
             {
-                article.WriterId = 1;
+                article.WriterId = writerId;
                 article.Date = values.Date;
                 article.Status = true;
                 _articleService.Update(article);

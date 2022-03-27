@@ -39,7 +39,9 @@ namespace BlogApp.WebUI.Controllers
         [HttpGet]
         public IActionResult EditProfile()
         {
-            var values = _writerService.GetById(1);
+            var userMail = User.Identity?.Name;
+            var writerId = _writerService.GetAll().Where(x => x.Email == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var values = _writerService.GetById(writerId);
             return View(values);
         }
 
